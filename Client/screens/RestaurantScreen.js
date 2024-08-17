@@ -1,9 +1,10 @@
-import { View, Text, ScrollView,Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView,Image, TouchableOpacity, StatusBar } from 'react-native';
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '../theme';
 import PratosRow from '../components/PratosRow';
+import CarrinhoPainel from '../components/CarrinhoPainel';
 
 export default function RestaurantScreen() {
    const {params} = useRoute();
@@ -12,7 +13,9 @@ export default function RestaurantScreen() {
    
    return (
       <View>
-         <ScrollView>
+         
+         <StatusBar style="light"/>
+         <ScrollView showsVerticalScrollIndicator={false}>
             <View className='relative'>
                <Image className='w-full h-72' source={item.image}/>
                <TouchableOpacity className='absolute top-14 left-4 bg-gray-50 p-2 rounded-full' onPress={()=>{
@@ -53,7 +56,7 @@ export default function RestaurantScreen() {
                </View>
             </View>
          </ScrollView>
-         <Text>RestaurantScreen</Text>
+         <CarrinhoPainel/>
       </View>
    );
 }
