@@ -1,14 +1,35 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { restaurantes } from '../constants';
 import { themeColors } from '../theme';
 import * as Icon from 'react-native-feather';
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRestaurant } from '../slices/restauranteSlice';
+import { removeFromCart, selectCartItems, selectCartTotal } from '../slices/cartSlice';
 
 export default function Carrinho() {
-  const navigation = useNavigation()
-  const restaurant = restaurantes.restaurants[0];
+  const restaurant = useSelector(selectRestaurant);
+  const navigation = useNavigation();
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
+  const [groupedItems, SetGroupedItems] = useState({})
+  const deliveryFee = 2
+  const dispatch = useDispatch()
+
+
+  useEffect(()=>{
+      const items = cartItems.reduce((group,item)=>{
+         if(group[item.id]){
+               group[item.id].push(item);
+         }else{
+               group[item.id] = [item]
+         }
+         return group;
+      },{})
+      SetGroupedItems(items);
+  },[cartItems])
   return (
     <View className='bg-white flex-1 items-baseline '>
       <SafeAreaView>
@@ -47,19 +68,22 @@ export default function Carrinho() {
          }}
          className="bg-white pt-5">
             {
-               restaurant.dishes.map((dishes,index)=>{
+               Object.entries(groupedItems).map(([key,items])=>{
+                  let dishes = items[0];
                return(
-                  <View key={index}
+                  <View key={key}
                   className='flex-row items-center space-x-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3' style={{shadowColor: "#000",elevation: 3}}>
                      <Text className='font-bold' style={{color: themeColors.text}}>
-                        2x
+                        {items.length}
                      </Text>
                      <Image className="h-14 w-14 rounded-full" source={dishes.image}/>
                      <Text className='flex-1 font-bold text-gray-700'>
                         {dishes.name}
                      </Text>
                      <Text className = 'font-semibold text-base'>R${dishes.price}</Text>
-                     <TouchableOpacity className='p-1 rounded-full' style={{backgroundColor: themeColors.bgColor(1)}}>
+                     <TouchableOpacity className='p-1 rounded-full'
+                     onPress={()=>dispatch(removeFromCart({id: dishes.id}))}
+                     style={{backgroundColor: themeColors.bgColor(1)}}>
 
                         <Icon.Minus strokeWidth={2} height={20} width={20} stroke='white'/>
 
@@ -79,7 +103,7 @@ export default function Carrinho() {
                   Subtotal
                </Text>
                <Text className ='text-gray-700'>
-                  R$30
+                  R${cartTotal}
                </Text>
             </View>
             <View className='flex-row justify-between'>
@@ -87,7 +111,7 @@ export default function Carrinho() {
                   Taxa de Entrega
                </Text>
                <Text className ='text-gray-700'>
-                  R$3
+                  R${deliveryFee}
                </Text>
             </View>
             <View className='flex-row justify-between'>
@@ -95,7 +119,7 @@ export default function Carrinho() {
                   Total
                </Text>
                <Text className ='text-gray-700 font-extrabold text-lg'>
-                  R$33
+                  R${deliveryFee+cartTotal}
                </Text>
             </View>
             <View className='flex-row'>
