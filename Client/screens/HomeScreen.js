@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '../theme';
 import Categories from '../components/categories';
-import { restaurantes } from '../constants';
+import { restaurantes, restaurantes2, restaurantes3 } from '../constants';
 import RestauranteRow from '../components/restauranteRow';
 
 
@@ -21,7 +21,7 @@ export default function HomeScreen() {
                {/*Localizacao*/}
                <View className="flex-row items-center space-x-1 border-0 border-l-2 pl-2 border-l-gray-300">
                   <Icon.MapPin height={'20'} width={'20'} stroke={'gray'} />
-                  <Text className="text-gray-500">New York</Text>
+                  <Text className="text-gray-500">São Paulo</Text>
                </View>
             </View>
             {/*botaoslider*/}
@@ -43,12 +43,34 @@ export default function HomeScreen() {
             {/* restaurantes */}
             <View className='mt-5 mb-5 pb-7'>
                {
-                  [restaurantes,restaurantes,restaurantes].map((item,index)=>{
+                  [restaurantes].map((item,index)=>{
                      return(
                         <RestauranteRow
                         key={index}
                         titulo ={item.title}
-                        restaurantes={item.restaurants}
+                        restaurant={item.restaurants}
+                        descricao ={item.description}/>
+                     )
+                  })
+               }
+               {
+                  [restaurantes2].map((item,index)=>{
+                     return(
+                        <RestauranteRow
+                        key={index}
+                        titulo ={item.title}
+                        restaurant={item.restaurants}
+                        descricao ={item.description}/>
+                     )
+                  }) 
+               }
+                {
+                  [restaurantes3].map((item,index)=>{
+                     return(
+                        <RestauranteRow
+                        key={index}
+                        titulo ={item.title}
+                        restaurant={item.restaurants}
                         descricao ={item.description}/>
                      )
                   })

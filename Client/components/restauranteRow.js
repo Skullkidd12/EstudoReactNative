@@ -25,7 +25,7 @@ export default function RestauranteRow({titulo,descricao,restaurant}) {
       className='overflow-visible py-5'>  
 
       {
-         restaurantes.restaurants.map((restaurant, index)=>{
+         restaurant.map((restaurant, index)=>{
             return(
                <RestaurantCard
                item={restaurant}
