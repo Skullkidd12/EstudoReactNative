@@ -21,13 +21,23 @@ npm run migration:run ou yarn migration:run
 ```
 
 ## Run project
+ 
 
 First all, start project using this commands:
 
 ```bash
 npx start expo
 ```
-Open [http://127.0.0.1:5173/](http://127.0.0.1:5173/).
+
+Depois, baixe o app expo.go:
+https://apps.apple.com/us/app/expo-go/id982107779
+ou
+https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR
+
+e leia o qrcode no terminal:
+![image](https://github.com/user-attachments/assets/cc7c4460-1109-4caf-ac9d-7dac668bea0f)
+
+
 
 ## 🚀 Esse projeto usa
 
