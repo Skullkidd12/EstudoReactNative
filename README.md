@@ -3,30 +3,15 @@
 >Esse projeto é um estudo de reactNative com expo e redux, de um app de entregas.
 >Para a estilização utilizei NativeWind e imagens locais
 
-
-
 ![Sem Título-1](https://github.com/user-attachments/assets/3babcb29-5ffd-41db-99f3-3e1ce9fa01e8)
 
-## Instalar dependencias
-
+Instalar dependencias
 ```bash
 npm install
 ```
-
-### Docker compose commands
-
+Rodar expo
 ```bash
-docker-compose up -d
-npm run migration:run ou yarn migration:run
-```
-
-## Run project
- 
-
-First all, start project using this commands:
-
-```bash
-npx start expo
+npx expo start
 ```
 
 Depois, baixe o app expo.go:
@@ -36,8 +21,6 @@ https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR
 
 e leia o qrcode no terminal:
 ![image](https://github.com/user-attachments/assets/cc7c4460-1109-4caf-ac9d-7dac668bea0f)
-
-
 
 ## 🚀 Esse projeto usa
 
@@ -52,4 +35,4 @@ e leia o qrcode no terminal:
 
 São uma serie de telas mostrando o fluxo de uso de um usuário num app gerenciador de entregas de comida (tipo ifood).
 
-Ainda é um trabalho em construção. 
+## Ainda é um trabalho em construção. 
